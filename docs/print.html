@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kunkus</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 综述</a></li><li class="chapter-item expanded "><a href="phonology.html"><strong aria-hidden="true">2.</strong> 音系</a></li><li class="chapter-item expanded "><a href="noun/index.html"><strong aria-hidden="true">3.</strong> 名词</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="noun/gender.html"><strong aria-hidden="true">3.1.</strong> 性</a></li><li class="chapter-item expanded "><a href="noun/.md.html"><strong aria-hidden="true">3.2.</strong> 态</a></li><li class="chapter-item expanded "><a href="noun/case.html"><strong aria-hidden="true">3.3.</strong> 格</a></li></ol></li><li class="chapter-item expanded "><a href="verb/index.html"><strong aria-hidden="true">4.</strong> 动词</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="verb/intent.html"><strong aria-hidden="true">4.1.</strong> 意图</a></li><li class="chapter-item expanded "><a href="verb/form.html"><strong aria-hidden="true">4.2.</strong> 态</a></li><li class="chapter-item expanded "><a href="verb/aspect.html"><strong aria-hidden="true">4.3.</strong> 体</a></li><li class="chapter-item expanded "><a href="verb/level-for-topic.html"><strong aria-hidden="true">4.4.</strong> 话题的主动级别</a></li></ol></li><li class="chapter-item expanded "><a href="interrogate/index.html"><strong aria-hidden="true">5.</strong> 疑问</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="interrogate/special.html"><strong aria-hidden="true">5.1.</strong> 特殊疑问句</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kunkus</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="kunkus语"><a class="header" href="#kunkus语">Kunkus语</a></h1>
+<p>某<code>@海瑞</code>在熔岩语之后的另一个造语,据说这次是正式坑了.不过说起来,这个语言从2021年就存在了,但是在2023年才代入文化背景.</p>
+<h2 id="背景"><a class="header" href="#背景">背景</a></h2>
+<p>这个语言服务于海嘉国的女权时期.</p>
+<p>生育机制决定了,在今海嘉地区的人类中,男女比为1:20到1:25.</p>
+<p>男性虽然在物理力量占优,但是也不能与二十多个人抗衡.因此在数量劣势下,只能被氏族任意处置,往往是作为公共的绒布球,即:生育工具和玩具.</p>
+<p>不过,相比于独占女性的雄性竞争,女性对男性的占有需求不多,因此雌性竞争不像雄性竞争一样惨烈,多个女性群体占有一个男性的情况得以存在,这种&quot;群体占有&quot;随着人类数量的增加,规模逐渐扩大,形成了早期的海嘉社会.</p>
+<!-- 在这种环境中,Hi人习得了"共享"和"群体霸凌"的本能.大家和和气气地生活,有好东西也每人分一点;但是如果有人侵犯别人的利益,威胁了更多的人,那么所有人就会合起来薄纱他.
+"制衡"的另一面是"落井下石",一旦一个人已经进入弱势,那么欺负他不会付出任何成本,所有人都会乐意欺负他 -->
+<!-- 早期社会由氏族扩大到部落,氏族会议扩大到了部落的"公民大会",然后随着社会进一步扩大,公民大会被常务会架空,然后中央集权进一步加剧,直到Hi版的屋大维架空常务会,称帝,一个封建制国家正式形成. -->
+<!-- 因此在社会上,女性是大部分,是第零性别,男性则是少的,被"管理"的,被审美的. 社会上的"时尚"虽然有时候出自某个异想天开的女性(比如Hi版的路易十四),但往往被穿到了男性身上,束腰,高跟鞋,裹脚,这些禁锢对于社会有益的,因此被宣传成时尚和美丽.当一个好花瓶和好绒布球成为了"男德"的主要内容.
+相比之下,女性是粗糙的,朴素的,因为劳动的负担让人体面不起来.况且,有些人想要模仿男性的"美丽",但结果只会辣眼睛.她们是审美者,而自身与美无缘.一个搬砖工也许在工资日结之后,到拿着钱到技院中爽一发,但下一个人还在等着,她没钱包场,只能离开 -->
+<h2 id="特点"><a class="header" href="#特点">特点</a></h2>
+<ul>
+<li>语法性和语义性的重解释</li>
+</ul>
+<!-- 为了契合“群体性”，有一些特殊的情态表示劝诱，邀请，并且这个情态的意图是混杂的，模糊地表示着不知道是这个人还是群体全体的意志 -->
+<ul>
+<li>
+<p>格区分作用，语序区分生命度</p>
+</li>
+<li>
+<p>形容词丰富且常用</p>
+</li>
+<li>
+<p>关注感情色彩</p>
+</li>
+<li>
+<p>副词,尤其是修饰程度用的</p>
+</li>
+<li>
+<p>关注言据,尽量避免保证(swear,damn等)</p>
+</li>
+<li>
+<p>敬语</p>
+</li>
+<li>
+<p>第一人称代词倾向于用复数(这印证了避免出头的想法)</p>
+</li>
+<li>
+<p>共情优先于解决问题</p>
+</li>
+<li>
+<p>重情态,避免直接提问对方</p>
+</li>
+<li>
+<p>多用疑问句(但是保持提问的礼貌和距离)</p>
+</li>
+<li>
+<p>邀请优于命令</p>
+</li>
+<li>
+<p>维持语法形式完整</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="音系"><a class="header" href="#音系">音系</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="名词"><a class="header" href="#名词">名词</a></h1>
+<p>名词具有 </p>
+<ul>
+<li>性</li>
+<li>数
+属性,用于表示其基本性质它在句子中的作用,则用<strong>格</strong>来表示.</li>
+</ul>
+<p>由于Kunkus与中有敬语,名词的一些搭配用法也参与敬意表达.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="性"><a class="header" href="#性">性</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="态"><a class="header" href="#态">态</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="格"><a class="header" href="#格">格</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="动词"><a class="header" href="#动词">动词</a></h1>
+<p>动词有</p>
+<ul>
+<li><a href="verb/intent.html">意图</a></li>
+<li><a href="verb/effect.html">效应</a></li>
+</ul>
+<p>作为主要属性.其中</p>
+<ul>
+<li>言据(仅限于陈述句)</li>
+<li><a href="verb/form.html">态</a>
+仅限陈述句有.</li>
+</ul>
+<p>另外,由于Kinkus语的话题优先性,有一种<a href="verb/./level-for-topic.html">级别词</a>用来表示话题在句子中的主动程度.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="意图"><a class="header" href="#意图">意图</a></h1>
+<p>在Kunkus的视角下,任何一个句子都有其意图.</p>
+<h2 id="陈述"><a class="header" href="#陈述">陈述</a></h2>
+<p>陈述一个客观发生的事件,听者可以去查证它的真假.不过从意义上,说者倾向于&quot;内容为真&quot;.</p>
+<h2 id="承诺"><a class="header" href="#承诺">承诺</a></h2>
+<p>表示说话者&quot;有意愿做出事件&quot;,这个事件正常情况下会在将来被实现.</p>
+<h2 id="警告"><a class="header" href="#警告">警告</a></h2>
+<h2 id="请求"><a class="header" href="#请求">请求</a></h2>
+<p>用以表示&quot;说话者希望听话者做某事&quot;.如果是客观现实所做的要求,则用带推断言据的陈述句表示.</p>
+<h3 id="弱请求"><a class="header" href="#弱请求">弱请求</a></h3>
+<p>这种行为对应的是&quot;Could you please&quot;这样的委婉表达,并不期待着听话者的肯定回应.</p>
+<h3 id="要求"><a class="header" href="#要求">要求</a></h3>
+<p>同样表示说话人的愿望.相比于上一个,这一意图表示说者期待着听者的肯定回应.</p>
+<h3 id="命令"><a class="header" href="#命令">命令</a></h3>
+<p>命令是请求的强形式,比请求包含的意图/情绪更为强烈.如果听者否定,那么接下来会有不愉快的事情发生.</p>
+<!-- ## 施为
+
+施为句不“描述”或“报道”或断言任何东西,不存在“真假”.说出这样的一句话, 就是实施一种行为, 或实施一种行为的一部分。这种行为一般也不会被描述成说话, 或“只是”说话。(Austin 1975 [1962] : 5 )
+
+下列有三个例子:
+1. I name this ship the Queen Eliz abeth .
+2. I give and bequeath my watch to my brother .
+3. I bet you sixpence it will rain tomorrow. -->
+<h2 id="警示"><a class="header" href="#警示">警示</a></h2>
+<p>旨在想听话者提起警示,这个事件不必为真,但是值得听话者做出行动. 如&quot;大灰狼<strong>要</strong>一口一个地<strong>吃掉</strong>小宝宝&quot;</p>
+<h2 id="表达"><a class="header" href="#表达">表达</a></h2>
+<p>用于表达一种单纯的情感,如&quot;谢谢&quot;,&quot;对不起&quot;.类似于施为句,说出这样的一句话, 就是实施一种行为.</p>
+<h2 id="宣称"><a class="header" href="#宣称">宣称</a></h2>
+<p>宣告类的行事要点是要改变所提到的实体的现状。成功实施这
+类行为将保证词语与世界之间的一致。如果某人成功地任命你为主
+席,那你就成了主席; 如果某人成功地宣布大会开幕,大会就开始了。</p>
+<h3 id="断言宣称"><a class="header" href="#断言宣称">断言宣称</a></h3>
+<p>有些宣告行为跟断言行为是重合的。当法官宣告某
+人有罪时, 他不仅改变了这个人的身份, 而且断言这个人真的有罪。</p>
+<h2 id="疑问"><a class="header" href="#疑问">疑问</a></h2>
+<p>疑问也是一意图,意在从听话者处获取信息.这种功能有其它的语法结构来表示.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="态-1"><a class="header" href="#态-1">态</a></h1>
+<p>Kunkus 语的<strong>体</strong>用于表示动作在空间中的状态.</p>
+<h2 id="事件"><a class="header" href="#事件">事件</a></h2>
+<p>表示客观发生的一个事件,它在时间上有固定的长度</p>
+<h2 id="状态"><a class="header" href="#状态">状态</a></h2>
+<p>表示物体所在的状态,这只在语境当时的一个时间有效.</p>
+<h2 id="成就"><a class="header" href="#成就">成就</a></h2>
+<p>表示动作的重点是其造成的影响.</p>
+<ul>
+<li>&quot;她学习了英语&quot;的重点在于&quot;她现在会英语&quot;</li>
+<li>&quot;我喝水了&quot;的影响在于&quot;我现在不渴</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="体"><a class="header" href="#体">体</a></h1>
+<p>当<a href="verb/./form.html">式</a>不足以区分动作状态时,体可以进一步确定动作的状态.</p>
+<h2 id="完成体"><a class="header" href="#完成体">完成体</a></h2>
+<p>在&quot;语境的当下&quot; , 这件事情已经完成. 如&quot;等我<strong>升</strong>到CEO就财务自由了&quot;</p>
+<h2 id="进行体"><a class="header" href="#进行体">进行体</a></h2>
+<p>实际进行，被描述者在&quot;语境的当下&quot;确实在做这件事,如&quot;别说了,我<strong>正吃饭</strong>呢&quot;</p>
+<h2 id="排程体"><a class="header" href="#排程体">排程体</a></h2>
+<p>事件在计划之中,并且已经做出了一部分,被描述者&quot;认为&quot;自己在做这件事.即使它不是事实上在做</p>
+<p>比如“我<strong>学</strong>英语八年了”</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="话题的主动级别"><a class="header" href="#话题的主动级别">话题的主动级别</a></h1>
+<p>用来表示话题在句子中的主动程度.</p>
+<h2 id="有意"><a class="header" href="#有意">有意</a></h2>
+<p>话题有主动性且有意愿地完成了事情.</p>
+<h2 id="无意"><a class="header" href="#无意">无意</a></h2>
+<p>虽然有主动性,但是造成事件不是出自话题本身的意志,如&quot;我把椅子碰到了&quot;中,我不是成心要碰倒椅子,但是我客观上做成了这一事情.</p>
+<h2 id="领受"><a class="header" href="#领受">领受</a></h2>
+<p>在动作中不占据主导,但是多少有一些主动性,如&quot;玛丽给<strong>孩子</strong>讲故事&quot;</p>
+<h2 id="体验"><a class="header" href="#体验">体验</a></h2>
+<p>体验除了用于接受情绪/情感反应，还用于无意的体验,包括:</p>
+<ul>
+<li>自动的感官感知
+<ul>
+<li>你睁着眼睛对着某个方向，看到什么大多不是你能决定的，听到的更不是了）
+<ul>
+<li>如果是有意的视觉行为，则会表达为「看/观察」</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>下意识的身体反应或内在感觉（咳嗽、喷嚏、流汗、冷暖、疼痛等）。</li>
+</ul>
+<h2 id="受事"><a class="header" href="#受事">受事</a></h2>
+<p>很好理解.话题是动作的承受者,在动作中没有主动性</p>
+<h2 id="相关"><a class="header" href="#相关">相关</a></h2>
+<p>话题只是在句子中出现,甚至没有参与事件的主要内容.</p>
+<p>如&quot;玛丽给孩子讲<strong>故事</strong>&quot;,其中按成分看,故事是&quot;讲&quot;的宾语,但是从作用来看,故事本身甚至没有受到影响,相比玛丽和孩子,它没有任何主动性.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="疑问-1"><a class="header" href="#疑问-1">疑问</a></h1>
+<p>疑问是一种特殊的言语行为,因此有一些单独的文法.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="特殊疑问句"><a class="header" href="#特殊疑问句">特殊疑问句</a></h1>
+<h2 id="特殊疑问词"><a class="header" href="#特殊疑问词">特殊疑问词</a></h2>
+<h3 id="词语如何使用"><a class="header" href="#词语如何使用">(词语如何使用)</a></h3>
+<p>罗素在评论苏格拉底方法时说：我们讨论“什么是正义”这样的问题，并不是因为我们对所讨论的事情缺少知识从而不能达到正确的结论，而是没有找到一种适当的逻辑来讨论我们已经知道的事情。所以，这里所要考察的是我们使用“正义”这个词以及某些相关词的方式，最后就能确定什么是正义“。我们所作的只不过是一桩语义学上的发现，而不是一桩伦理学上的发现。”</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
